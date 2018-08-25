@@ -51,7 +51,17 @@ var app = {
                 label: 'Amount of times teleported',
                 data: data
             });
+        });
+
+        $$(document).on('page:afterin', '.page[data-name="details"]', function (e) {
+            $$(".chart-btn").on("click", chartSelectHandler);
         })
+
+        $$(document).on('page:beforeout', '.page[data-name="details"]', function (e) {
+            $$(".chart-btn").off("click", chartSelectHandler);
+        })
+
+
 
         Framework7.request.get("https://csmm.catalysm.net/api/stats", data => {
             let stats = JSON.parse(data);
@@ -88,6 +98,13 @@ var app = {
 };
 
 app.initialize();
+
+function chartSelectHandler(e) {
+    $$(".chart-btn").removeClass('button-fill');
+    $$(e.target).addClass('button-fill')
+    let chartType = $$(e.target).data("chartType");
+    console.log(`selected type ${chartType}`)
+}
 
 function getDataFromLocalStorage(dataKey) {
     let dataToReturn = new Array();

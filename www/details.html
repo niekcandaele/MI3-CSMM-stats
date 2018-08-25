@@ -39,17 +39,34 @@
             <!-- Toolbar -->
             <div class="toolbar">
                 <div class="toolbar-inner">
+                    <div class="block">
+                        <p>Storing
+                            <span id="total-datapoints"></span> datapoints.</p>
+
+                    </div>
                 </div>
             </div>
 
             <!-- Scrollable page content -->
             <div class="page-content">
-                <p>Storing
-                    <span id="total-datapoints"></span> datapoints.</p>
 
-                <!-- Chart -->
-                <div class="chart-container" style="position: relative; height:40vh; width:80vw">
-                    <canvas id="csmm-chart" width="800" height="800"></canvas>
+
+
+                <div class="block">
+                    <div class="row">
+                        <button class="button col button-round button-fill chart-btn" data-chartType="servers">Servers</button>
+                        <button class="button col button-round chart-btn" data-chartType="players">Players</button>
+                        <button class="button col button-round chart-btn" data-chartType="uptime">Uptime</button>
+                    </div>
+                </div>
+
+
+
+                <div class="block">
+                    <!-- Chart -->
+                    <div class="chart-container" style="position: relative; height:40vh; width:80vw">
+                        <canvas id="csmm-chart" width="800" height="800"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
