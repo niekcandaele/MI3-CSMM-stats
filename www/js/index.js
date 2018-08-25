@@ -121,6 +121,13 @@ function getDataFromLocalStorage(dataKey) {
 
         if (dataPoint !== null) {
             parsedData = JSON.parse(dataPoint);
+
+            if (dataKey === 'uptime') {
+                let splitUptime =  parsedData[dataKey].split(":");
+                let totalSeconds = (parseInt(splitUptime[0]) * 60 * 60) + (parseInt(splitUptime[1]) * 60) + parseInt(splitUptime[2])
+                parsedData[dataKey] = totalSeconds / 3600
+            }
+
             dataToReturn.push({
                 data: parsedData[dataKey],
                 date: parsedData.date
