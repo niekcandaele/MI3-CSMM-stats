@@ -44,10 +44,10 @@ var app = {
 
             $$("#total-datapoints").text(storage.length);
 
-            let data = getDataFromLocalStorage('amountOfTimesTeleported');
+            let data = getDataFromLocalStorage('servers');
 
             drawChart({
-                label: 'Amount of times teleported',
+                label: 'Servers',
                 data: data
             });
         });
