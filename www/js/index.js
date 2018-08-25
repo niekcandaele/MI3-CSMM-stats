@@ -60,32 +60,11 @@ var app = {
             $$(".chart-btn").off("click", chartSelectHandler);
         })
 
+        getCSMMData();
+
+        setInterval(getCSMMData, 30000)
 
 
-        Framework7.request.get("https://csmm.catalysm.net/api/stats", data => {
-            let stats = JSON.parse(data);
-            $$('#total-servers').text(stats.servers);
-            $$('#total-players').text(stats.players);
-            $$('#total-users').text(stats.users);
-            $$('#uptime').text(stats.uptime);
-
-            $$("#total-custom-commands").text(stats.amountOfCustomCommands);
-            $$("#custom-commands-executed").text(stats.amountOfCustomCommandsExecuted);
-
-            $$('#total-teleport-locations').text(stats.amountOfTeleports);
-            $$("#total-teleported").text(stats.amountOfTimesTeleported);
-
-            $$("#total-country-ban").text(stats.countryBans);
-            $$("#total-command-handlers").text(stats.sdtdCommands);
-            $$("#total-motd-modules").text(stats.sdtdMotds);
-
-            $$("#avg-currency").text(Math.round(stats.currencyAvg));
-            $$("#total-currency").text(Math.round(stats.currencyTotal));
-
-            $$("#total-guilds").text(stats.guilds);
-
-            storeInLocalStorage(stats)
-        })
 
     },
 
@@ -96,6 +75,33 @@ var app = {
 };
 
 app.initialize();
+
+function getCSMMData() {
+    Framework7.request.get("https://csmm.catalysm.net/api/stats", data => {
+        let stats = JSON.parse(data);
+        $$('#total-servers').text(stats.servers);
+        $$('#total-players').text(stats.players);
+        $$('#total-users').text(stats.users);
+        $$('#uptime').text(stats.uptime);
+
+        $$("#total-custom-commands").text(stats.amountOfCustomCommands);
+        $$("#custom-commands-executed").text(stats.amountOfCustomCommandsExecuted);
+
+        $$('#total-teleport-locations').text(stats.amountOfTeleports);
+        $$("#total-teleported").text(stats.amountOfTimesTeleported);
+
+        $$("#total-country-ban").text(stats.countryBans);
+        $$("#total-command-handlers").text(stats.sdtdCommands);
+        $$("#total-motd-modules").text(stats.sdtdMotds);
+
+        $$("#avg-currency").text(Math.round(stats.currencyAvg));
+        $$("#total-currency").text(Math.round(stats.currencyTotal));
+
+        $$("#total-guilds").text(stats.guilds);
+
+        storeInLocalStorage(stats)
+    })
+}
 
 function chartSelectHandler(e) {
     $$(".chart-btn").removeClass('button-fill');
