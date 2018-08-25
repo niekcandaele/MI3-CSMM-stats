@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Required meta tags-->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#2196f3">
+  <!-- Your app title -->
+  <title>CSMM</title>
+  <!-- Path to Framework7 Library CSS -->
+  <link rel="stylesheet" href="css/framework7.css">
+  <link href="fontawesome-free-5.2.0-web/css/all.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- App root element -->
+  <div id="app">
+    <!-- Statusbar overlay -->
+    <div class="statusbar"></div>
+
+
+    <!-- Your main view, should have "view-main" class -->
+    <div class="view view-main">
+      <!-- Initial Page, "data-name" contains page name -->
+      <div data-name="main" class="page">
+
+        <!-- Top Navbar -->
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="title">Catalysm server monitor & manager</div>
+          </div>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+          <div class="toolbar-inner">
+            <!-- Toolbar links -->
+            <a href="/view-details/" class="link" data-view=".view-details">Details</a>
+            <a href="/about/" class="link">About app</a>
+          </div>
+        </div>
+
+        <!-- Scrollable page content -->
+        <div class="page-content">
+
+          <div class="card">
+            <div class="card-header">
+              <h2> System overview</h2>
+            </div>
+            <div class="card-content">
+              <!-- Card content -->
+              <div class="list simple-list">
+                <ul>
+
+                  <li>Total registered servers:
+                    <div id="total-servers"></div>
+                  </li>
+                  <li>Total players:
+                    <div id="total-players"></div>
+                  </li>
+                  <li>Total users:
+                    <div id="total-users"></div>
+                  </li>
+                  <li>Uptime:
+                    <div id="uptime"></div>
+                  </li>
+
+                  <li class="item-divider">7DTD ingame</li>
+
+                  <li>Custom commands registered:
+                    <div id="total-custom-commands"></div>
+                  </li>
+
+                  <li>Custom commands executed:
+                    <div id="custom-commands-executed"></div>
+                  </li>
+
+                  <li>Teleport locations registered:
+                    <div id="total-teleport-locations"></div>
+                  </li>
+
+                  <li>Total times teleported:
+                    <div id="total-teleported"></div>
+                  </li>
+
+                  <li>Country ban modules:
+                    <div id="total-country-ban"></div>
+                  </li>
+
+                  <li>Command handlers:
+                    <div id="total-command-handlers"></div>
+                  </li>
+
+                  <li>MOTD modules:
+                    <div id="total-motd-modules"></div>
+                  </li>
+
+                  <li>Avg. currency per player:
+                    <div id="avg-currency"></div>
+                  </li>
+
+                  <li>Total currency:
+                    <div id="total-currency"></div>
+                  </li>
+
+
+                  <li class="item-divider">Discord</li>
+
+                  <li>Total guilds:
+                    <div id="total-guilds"></div>
+                  </li>
+
+                </ul>
+              </div>
+
+
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <!-- Path to Framework7 Library JS-->
+  <script type="text/javascript" src="js/framework7.min.js"></script>
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+</body>
+
+</html>
