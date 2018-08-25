@@ -64,7 +64,6 @@ var app = {
 
         Framework7.request.get("https://csmm.catalysm.net/api/stats", data => {
             let stats = JSON.parse(data);
-            console.log(stats)
             $$('#total-servers').text(stats.servers);
             $$('#total-players').text(stats.players);
             $$('#total-users').text(stats.users);
@@ -102,7 +101,6 @@ function chartSelectHandler(e) {
     $$(".chart-btn").removeClass('button-fill');
     $$(e.target).addClass('button-fill')
     let chartType = $$(e.target).data("chartType");
-    console.log(`selected type ${chartType}`);
 
     let data = getDataFromLocalStorage(chartType);
 
