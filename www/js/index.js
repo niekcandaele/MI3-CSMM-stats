@@ -3,6 +3,7 @@ var $$ = Dom7;
 var f7app;
 var mainView;
 var aboutView;
+var db
 
 var app = {
     // Application Constructor
@@ -23,11 +24,13 @@ var app = {
             routes: [{
                 path: '/about/',
                 url: 'about.html',
+            }, {
+                path: '/details/',
+                url: 'details.html',
             }, ],
             // ... other parameters
         });
         mainView = f7app.views.create('.view-main');
-        aboutView = f7app.views.create('.view-about');
     },
 
     // deviceready Event Handler
@@ -60,6 +63,9 @@ var app = {
             $$("#total-currency").text(Math.round(stats.currencyTotal));
 
             $$("#total-guilds").text(stats.guilds);
+
+            storeInLocalStorage(stats)
+
         })
 
     },
@@ -71,3 +77,27 @@ var app = {
 };
 
 app.initialize();
+
+
+function storeInLocalStorage(stats) {
+    let storage = window.localStorage;
+
+    let currentIdx = storage.getItem('index');
+    let idxToSet
+
+    if (currentIdx === null) {
+        idxToSet = 1;
+    } else {
+        idxToSet = parseInt(currentIdx) + 1;
+    }
+
+    stats.date = Date.now();
+
+    try {
+        storage.setItem(idxToSet, JSON.stringify(stats));
+        storage.setItem('index', idxToSet);
+    } catch (error) {
+        console.error(error);
+        alert(`Error while setting an item in localStorage: ${error}`);
+    }
+}
