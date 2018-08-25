@@ -2,8 +2,7 @@ var $$ = Dom7;
 
 var f7app;
 var mainView;
-var aboutView;
-var db
+var myChart;
 
 var app = {
     // Application Constructor
@@ -103,7 +102,14 @@ function chartSelectHandler(e) {
     $$(".chart-btn").removeClass('button-fill');
     $$(e.target).addClass('button-fill')
     let chartType = $$(e.target).data("chartType");
-    console.log(`selected type ${chartType}`)
+    console.log(`selected type ${chartType}`);
+
+    let data = getDataFromLocalStorage(chartType);
+
+    drawChart({
+        label: chartType,
+        data: data
+    });
 }
 
 function getDataFromLocalStorage(dataKey) {
@@ -127,9 +133,12 @@ function getDataFromLocalStorage(dataKey) {
 
 function drawChart(options) {
     var chart = $$("#csmm-chart");
-    chart.empty();
 
-    var myChart = new Chart(chart, {
+    if (myChart !== undefined) {
+        myChart.destroy();
+    }
+
+    myChart = new Chart(chart, {
         type: 'line',
         data: {
             labels: options.data.map(data => {
