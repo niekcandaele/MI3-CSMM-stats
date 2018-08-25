@@ -40,10 +40,22 @@ var app = {
     onDeviceReady: function () {
         this.receivedEvent('deviceready');
 
+        $$(document).on("page:init", '.page[data-name="details"]', e => {
+            let storage = window.localStorage;
+
+            $$("#total-datapoints").text(storage.length);
+
+            let data = getDataFromLocalStorage('amountOfTimesTeleported');
+
+            drawChart({
+                label: 'Amount of times teleported',
+                data: data
+            });
+        })
+
         Framework7.request.get("https://csmm.catalysm.net/api/stats", data => {
             let stats = JSON.parse(data);
-            console.log(stats);
-
+            console.log(stats)
             $$('#total-servers').text(stats.servers);
             $$('#total-players').text(stats.players);
             $$('#total-users').text(stats.users);
@@ -65,7 +77,6 @@ var app = {
             $$("#total-guilds").text(stats.guilds);
 
             storeInLocalStorage(stats)
-
         })
 
     },
@@ -78,6 +89,49 @@ var app = {
 
 app.initialize();
 
+function getDataFromLocalStorage(dataKey) {
+    let dataToReturn = new Array();
+    let storageIdx = window.localStorage.getItem('index');
+
+    for (let index = 0; index < storageIdx; index++) {
+        let dataPoint = window.localStorage.getItem(index);
+
+        if (dataPoint !== null) {
+            parsedData = JSON.parse(dataPoint);
+            dataToReturn.push({
+                data: parsedData[dataKey],
+                date: parsedData.date
+            })
+        }
+    }
+
+    return dataToReturn
+}
+
+function drawChart(options) {
+    var chart = $$("#csmm-chart");
+    chart.empty();
+
+    var myChart = new Chart(chart, {
+        type: 'line',
+        data: {
+            labels: options.data.map(data => {
+                let date = new Date(data.date);
+                return date.toLocaleDateString();
+            }),
+            datasets: [{
+                label: options.label,
+                data: options.data.map(data => data.data),
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{}]
+            }
+        }
+    });
+}
 
 function storeInLocalStorage(stats) {
     let storage = window.localStorage;

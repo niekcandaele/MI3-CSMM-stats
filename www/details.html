@@ -12,7 +12,7 @@
     <title>CSMM</title>
     <!-- Path to Framework7 Library CSS -->
     <link rel="stylesheet" href="css/framework7.css">
-    <link href="fontawesome-free-5.2.0-web/css/all.css" rel="stylesheet">
+    <link href="vendor/fontawesome-free-5.2.0-web/css/all.css" rel="stylesheet">
 </head>
 
 <body>
@@ -20,7 +20,7 @@
     <!-- Your main view, should have "view-main" class -->
     <div class="view view-main">
         <!-- Initial Page, "data-name" contains page name -->
-        <div data-name="details" class="page">
+        <div data-name="details" class="page" id="details-page">
 
             <!-- Top Navbar -->
             <div class="navbar">
@@ -44,10 +44,13 @@
 
             <!-- Scrollable page content -->
             <div class="page-content">
-                <p>This is where we talk details what this app does</p>
-                <!-- Link to another page -->
+                <p>Storing
+                    <span id="total-datapoints"></span> datapoints.</p>
 
-
+                <!-- Chart -->
+                <div class="chart-container" style="position: relative; height:40vh; width:80vw">
+                    <canvas id="csmm-chart" width="800" height="800"></canvas>
+                </div>
             </div>
         </div>
 
